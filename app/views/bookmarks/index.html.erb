@@ -1,0 +1,15 @@
+<% @title = "Hauptseite" %>
+<h2>Liste der Favoriten</h2>
+<ul>
+	<% @bookmarks.each do |bookmark|%>
+
+	<li><%= link_to bookmark.title, bookmark.url %>
+		(<%= link_to "Details", bookmark_path(bookmark.id) %>
+		<%= link_to "Ändern", edit_bookmark_path(bookmark) %>
+		<%= link_to "Löschen", bookmark, confirm: 'Wollen Sie diesen Datensatz wirklich löschen?', method: :delete %>)</li>
+	<% end %>
+</ul>
+<p>
+	<%= link_to "Neuen Favoriten erstellen", new_bookmark_path %>
+	<%= link_to "Neues Benutzerkonto erstellen", new_user_path %>
+</p>
