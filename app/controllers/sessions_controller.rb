@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:email])
 		if user && user.authenticate(params[:password])
 			sessions[:user_id] = user.id
-			redirect_to bookmarks_path,
+			redirect_to bookmarks_path
 			notice: "Sie haben sich erfolgreich angemeldet!"
 		else
 			flash.now.alert = "Fehlerhafte Login-Daten!"
