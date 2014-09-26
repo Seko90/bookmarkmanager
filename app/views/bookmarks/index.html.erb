@@ -10,6 +10,8 @@
 	<% end %>
 </ul>
 <p>
+	<%if admin? %>
 	<%= link_to "Neuen Favoriten erstellen", new_bookmark_path %>
 	<%= link_to "Neues Benutzerkonto erstellen", new_user_path %>
+	<% end %>
 </p>
