@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			notice: "Ihr Benutzerkonto wurde angelegt"
-      redirect_to user_path
+			#notice: "Ihr Benutzerkonto wurde angelegt"
+      redirect_to bookmarks_path
 		else
 			render "new"
 		end
