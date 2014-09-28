@@ -22,14 +22,11 @@
 				<% end %>
 			</p>
 			<%= yield %>
-			<div id="footer">
-			&copy: 2011 |
 			<% if user_signed_in? %>
-			<%= link_to "logout", logout_path, method: :delete %> |
+			<%= link_to "Logout", logout_path, method: :delete %>
 			<% else %>
-			<%= link_to "login", login_path %>
+			<%= link_to "Login", login_path %>
 			<% end %>
-			</div>
 		</div>
 	</div>
 

@@ -1,22 +1,24 @@
 class BookmarksController < ApplicationController
+  before_filter :require_login
+
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = current_user.bookmarks
   end
   
   def edit
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = current_user.bookmarks.find(params[:id])
   end
   
   def new
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
   end
   
   def show
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = current_user.bookmarks.find(params[:id])
   end
   
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark = current_user.bookmarks.build(bookmark_params)
     if @bookmark.save
       redirect_to bookmarks_path,
       notice: "Favorit wurde erfolgreich erstellt."
@@ -26,7 +28,7 @@ class BookmarksController < ApplicationController
   end  
   
   def update
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = current_user.bookmarks.find(params[:id])
     if @bookmark.update_attributes(params[:bookmark])
       redirect_to bookmarks_path, 
       notice: "Favorit wurde erfolgreich geändert"
@@ -36,13 +38,21 @@ class BookmarksController < ApplicationController
   end
   
   def destroy
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = current_user.bookmarks.find(params[:id])
     @bookmark.destroy
-    redirect_to bookmarks_url,
+    redirect_to root_path,
     notice: "Favorit wurde erfolgreich gelöscht."
   end
   
   def bookmark_params
       params.require(:bookmark).permit(:title, :url, :comment)
+  end
+end
+
+private
+  def require_login
+    unless user_signed_in?
+      redirect_to login_path,
+      alerrt: "Bitte melden sie sich zuerst an"
     end
 end
