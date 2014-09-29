@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :contact_messages
+
   root to: 'pages#home'
   resources :bookmarks
   resources :users, only: [:new, :create]

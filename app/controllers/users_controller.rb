@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+      ContactMailer.registration_confirmation(@user).deliver
 			redirect_to login_path,
 			notice: "Ihr Benutzerkonto wurde angelegt"
 		else
