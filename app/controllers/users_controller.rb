@@ -3,6 +3,17 @@ class UsersController < ApplicationController
 	def new
 		@user = User.new
 	end
+  
+  def formular
+  	@usert = User.all
+  end
+
+  def destroy
+    @usert = User.find(params[:id])
+    @usert.destroy
+    redirect_to root_path,
+    notice: "Nutzer wurde erfolgreich gelöscht."
+  end
 
 	def create
 		@user = User.new(user_params)

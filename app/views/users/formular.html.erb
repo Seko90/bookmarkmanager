@@ -1,0 +1,11 @@
+<p>Kontaktformular</p>
+<h2>Anfrage stellen</h2>
+
+<ul>
+	<% @usert.each do |user| %>
+
+	<li><%= user.email %>
+		<%= link_to "Löschen", user, confirm: 'Wollen Sie diesen Benutzer wirklich löschen?', method: :delete %></li>
+	
+	<% end %>
+</ul>
